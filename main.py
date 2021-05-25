@@ -1,4 +1,5 @@
 # import json  # ===================================================================================================
+import datetime
 import random
 import re
 import socket
@@ -59,6 +60,9 @@ def scraper(s_url):
         'adult': '1'
     }
 
+    s_parmters['checkin'] = datetime.datetime.now().date()
+    s_parmters['checkout'] = datetime.datetime.now().date() + datetime.timedelta(days=1)
+
     try:  # Sometimes connection got error. So catch some exceptions.
 
         s_soup = soup('get', s_url, 'html.parser', s_head, s_parmters, None, None)
@@ -84,6 +88,9 @@ def scraper(s_url):
             location = 'none'
 
         if scraper_testing is True:
+            print('Today:', datetime.datetime.now().date())
+            print('Tomorrow:', datetime.datetime.now().date() + datetime.timedelta(days=1))
+
             print('Property Name:', property_name)
             print('Property Type:', property_type)
             print('Location:', location)
