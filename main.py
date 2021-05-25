@@ -54,14 +54,11 @@ def scraper(s_url):
                       'Chrome/90.0.4430.93 Safari/537.36 OPR/76.0.4017.107'}
 
     s_parmters = {
-        'checkin': '2021-05-25',
-        'checkout': '2021-05-26',
+        'checkin': datetime.datetime.now().date(),
+        'checkout': datetime.datetime.now().date() + datetime.timedelta(days=1),
         'room': '1',
         'adult': '1'
     }
-
-    s_parmters['checkin'] = datetime.datetime.now().date()
-    s_parmters['checkout'] = datetime.datetime.now().date() + datetime.timedelta(days=1)
 
     try:  # Sometimes connection got error. So catch some exceptions.
 
@@ -89,12 +86,11 @@ def scraper(s_url):
 
         if scraper_testing is True:
             print('Today:', datetime.datetime.now().date())
-            print('Tomorrow:', datetime.datetime.now().date() + datetime.timedelta(days=1))
-
+            print('\n')
             print('Property Name:', property_name)
             print('Property Type:', property_type)
             print('Location:', location)
-
+            print('\n')
             print('Sleep: 10')  # ==================================================================================
             time.sleep(10)  # ======================================================================================
 
@@ -224,8 +220,8 @@ if __name__ == '__main__':
     scraper_testing = True
     team = [0, 1]  # [(#), (Total)]
     print('To check function scraper(), input \'1\' and press ENTER.')
-    print('To populate urls by function sample_urls(), input \'2\' and press ENTER.')
-    print('To scrape data by function sample(), input \'3\' and press ENTER.')
+    # print('To populate urls by function sample_urls(), input \'2\' and press ENTER.')
+    # print('To scrape data by function sample(), input \'3\' and press ENTER.')
     inp = input()
     if inp == '1':
         scraper(None)
