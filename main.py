@@ -84,17 +84,35 @@ def scraper(s_url):
         except Exception:
             location = 'none'
 
+        try:
+            rating = s_soup.find('div', {'class': 'score'}).text
+        except Exception:
+            rating = 'none'
+
+        try:
+            total_review = s_soup.find('div', {'class': 'review-badge-count'}).text
+        except Exception:
+            total_review = 'none'
+
+        try:
+            health_protocol_license = s_soup.find('div', {'class': 'tiket-info-desc',}).text
+        except Exception:
+            health_protocol_license = 'none'
+
         if scraper_testing is True:
             print('Today:', datetime.datetime.now().date())
             print('\n')
             print('Property Name:', property_name)
             print('Property Type:', property_type)
             print('Location:', location)
+            print('Ratings:', rating )
+            print('Total Reviews:', total_review)
+            print('Health_Protocol_licenses:', health_protocol_license)
             print('\n')
             print('Sleep: 10')  # ==================================================================================
             time.sleep(10)  # ======================================================================================
 
-        return [property_name, property_type, location]
+        return [property_name, property_type, location, rating, total_review, health_protocol_license]
 
     except (socket.gaierror, urllib3.exceptions.NewConnectionError, urllib3.exceptions.MaxRetryError,
             requests.exceptions.ConnectionError) as err:
@@ -234,3 +252,4 @@ if __name__ == '__main__':
         print('And you are person #.. of the team.')
         team[0] = int(input())
         sample()
+
