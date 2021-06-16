@@ -84,18 +84,14 @@ def scraper(s_url):
         except Exception:
             location = 'none'
 
-        try:
-            review_badge_title = s_soup.find_all('div', {'class': 'review-badge-title'})[1].text
-        except Exception:
-            review_badge_title = 'none'
-
         if scraper_testing is True:
             print('Today:', datetime.datetime.now().date())
-            print('\nProperty Name:', property_name)
+            print('\n')
+            print('Property Name:', property_name)
             print('Property Type:', property_type)
             print('Location:', location)
-            print('Review Badge Title:', review_badge_title)
-            print('\nSleep: 10')  # ==================================================================================
+            print('\n')
+            print('Sleep: 10')  # ==================================================================================
             time.sleep(10)  # ======================================================================================
 
         return [property_name, property_type, location]
